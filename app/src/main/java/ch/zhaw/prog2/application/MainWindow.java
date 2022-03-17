@@ -12,13 +12,20 @@ public class MainWindow extends javafx.application.Application{
     public void start(Stage primaryStage) throws Exception {
         openMainWindow(primaryStage);
     }
-    private void openMainWindow(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
-        Pane rootNode = loader.load();
-        Scene scene = new Scene(rootNode);
-        stage.setScene(scene);
-        stage.show();
+    private void openMainWindow(Stage stage)  {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
+            Pane rootNode = loader.load();
+            MainWindowController controller = loader.getController();
+            controller.connectProperties();
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+            stage.show();
 
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
